@@ -61,6 +61,11 @@ export class CalculatorComponent {
       numbersArray = input;
     }
 
-    return numbersArray.reduce((acc, sum) => acc - sum, 1);
+    if (input.includes('\n')) {
+      numbersArray = input.split('\n')
+      .join(',')
+      .split(',').filter((num: string) => num.trim() !== '').map((el: string) => parseInt(el, 10));
+    }
+    return numbersArray.reduce((acc, sum) => acc * sum, 1);
   }
 }

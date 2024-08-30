@@ -49,4 +49,8 @@ export class CalculatorComponent {
 
     return numbersArray.reduce((acc, sum) => acc - sum);
   }
+
+  calculateMultiplication(input: any): number {
+    return 0;
+  }
 }

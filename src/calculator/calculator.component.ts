@@ -55,6 +55,12 @@ export class CalculatorComponent {
     if (input === '') return 0
 
     if (typeof input === 'number') return input;
-    return input;
+
+    let numbersArray: number[] = [];
+    if (Array.isArray(input)) {
+      numbersArray = input;
+    }
+
+    return numbersArray.reduce((acc, sum) => acc - sum, 1);
   }
 }

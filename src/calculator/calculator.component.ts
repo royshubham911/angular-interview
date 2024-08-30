@@ -27,4 +27,20 @@ export class CalculatorComponent {
 
     return numbersArray.reduce((acc, sum) => acc + sum, 0);
   }
+
+  calculateSubstract(input: any): number {
+    if (!input) return 0;
+    if (input === '') return 0
+
+    if (typeof input === 'number') return input;
+
+    let numbersArray: number[] = [];
+    if (Array.isArray(input)) {
+      numbersArray = input.sort((a, b) => b - a);
+    }
+
+    return numbersArray.reduce((acc, sum) => acc - sum);
+  }
+
+  sub = this.calculateSubstract([1,2,4])
 }

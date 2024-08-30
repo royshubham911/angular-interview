@@ -3,26 +3,28 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-calculator',
   templateUrl: './calculator.component.html',
-  styleUrls: ['./calculator.component.scss']
+  styleUrls: ['./calculator.component.scss'],
 })
 export class CalculatorComponent {
-  constructor() {}
-
-  inputString: string = '';
-  result: number = 0;
-
   calculateAdd(input: any): number {
     if (!input) return 0;
     if (input === '') return 0
 
-  if (typeof input === 'number') return input;
+    if (typeof input === 'number') return input;
 
-  let numbersArray: number[] = [];
+    let numbersArray: number[] = [];
 
-  if (Array.isArray(input)) {
-    numbersArray = input;
-  }
+    if (Array.isArray(input)) {
+      numbersArray = input;
+    }
 
-  return numbersArray.reduce((acc, sum) => acc + sum, 0);
+    if (input.includes('\n')) {
+      numbersArray = input.split('\n')
+      .join(',')
+      .split(',').filter((num: string) => num.trim() !== '').map((el: string) => parseInt(el, 10))
+      console.log('numsArr', numbersArray)
+    }
+
+    return numbersArray.reduce((acc, sum) => acc + sum, 0);
   }
 }

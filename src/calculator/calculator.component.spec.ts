@@ -32,6 +32,6 @@ describe('CalculatorComponent', () => {
     expect(component.calculateAdd([1, 2, 4])).toBe(7)
   })
   it('should be able to handle the line change between numbers passes in a string', ()=> {
-    expect(component.calculateAdd('1\n3,5')).toBe(7)
+    expect(component.calculateAdd('1\n3,5,\n8')).toBe(17)
   })
 });

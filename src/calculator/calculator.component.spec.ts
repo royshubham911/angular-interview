@@ -45,10 +45,10 @@ describe('CalculatorComponent', () => {
   it('should return same value for a single number', () => {
     expect(component.calculateSubstract(5)).toBe(5)
   });
-  it('should be able to handle the elements in an array', ()=> {
-    expect(component.calculateSubstract([1, 2, 4])).toBe(7)
+  it('should be able to handle the elements in an array for substraction', ()=> {
+    expect(component.calculateSubstract([1, 2, 4])).toBe(1)
   })
-  it('should be able to handle the line change between numbers passes in a string', ()=> {
-    expect(component.calculateSubstract('5,\n8')).toBe(17)
+  it('should be able to handle the line change between numbers passes in a string (substraction)', ()=> {
+    expect(component.calculateSubstract('5,\n8')).toBe(3)
   })
 });

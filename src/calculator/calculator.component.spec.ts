@@ -51,4 +51,21 @@ describe('CalculatorComponent', () => {
   it('should be able to handle the line change between numbers passes in a string (substraction)', ()=> {
     expect(component.calculateSubstract('5,\n8')).toBe(3)
   })
+  it('should return 0 for an empty string and null values', () => {
+    expect(component.calculateMultiplication(null)).toBe(0);
+  });
+
+  it('should return 0 for an empty string', () => {
+    expect(component.calculateMultiplication('')).toBe(0);
+  });
+
+  it('should return same value for a single number', () => {
+    expect(component.calculateMultiplication(5)).toBe(5)
+  });
+  it('should be able to handle the elements in an array for substraction', ()=> {
+    expect(component.calculateMultiplication([1, 2, 4])).toBe(8)
+  })
+  it('should be able to handle the line change between numbers passes in a string (substraction)', ()=> {
+    expect(component.calculateMultiplication('5,\n8')).toBe(40)
+  })
 });

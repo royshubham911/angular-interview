@@ -12,21 +12,17 @@ export class CalculatorComponent {
   result: number = 0;
 
   calculateAdd(input: any): number {
-    let sum = 0;
     if (!input) return 0;
     if (input === '') return 0
-    let numbers = parseInt(input, 10);
-    let numbersArray: number[] = [];
-    numbersArray.push(numbers);
-    if (numbersArray.length === 1) {
-      sum = numbersArray[0];
-    }
-    return sum;
+
+  if (typeof input === 'number') return input;
+
+  let numbersArray: number[] = [];
+
+  if (Array.isArray(input)) {
+    numbersArray = input;
   }
 
-  inputValues(event: any) {
-    const target = event.target.value;
-    this.inputString = target;
-    this.calculateAdd(this.inputString);
+  return numbersArray.reduce((acc, sum) => acc + sum, 0);
   }
 }

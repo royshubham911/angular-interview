@@ -28,7 +28,7 @@ describe('CalculatorComponent', () => {
   it('should return same value for a single number', () => {
     expect(component.calculateAdd(5)).toBe(5)
   });
-  it('should be able to multiple comma separated numbers', ()=> {
+  it('should be able to handle the elements in an array', ()=> {
     expect(component.calculateAdd([1, 2, 4])).toBe(7)
   })
 });

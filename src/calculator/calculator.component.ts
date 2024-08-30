@@ -6,9 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./calculator.component.scss'],
 })
 export class CalculatorComponent {
+
+  sortDescending(arr: number[]): number[] {
+    return arr.slice().sort((a, b) => b - a);
+  }
+
   calculateAdd(input: any): number {
     if (!input) return 0;
-    if (input === '') return 0
+    if (input === '') return 0;
 
     if (typeof input === 'number') return input;
 
@@ -22,7 +27,6 @@ export class CalculatorComponent {
       numbersArray = input.split('\n')
       .join(',')
       .split(',').filter((num: string) => num.trim() !== '').map((el: string) => parseInt(el, 10))
-      console.log('numsArr', numbersArray)
     }
 
     return numbersArray.reduce((acc, sum) => acc + sum, 0);
@@ -30,21 +34,20 @@ export class CalculatorComponent {
 
   calculateSubstract(input: any): number {
     if (!input) return 0;
-    if (input === '') return 0
+    if (input === '') return 0;
 
     if (typeof input === 'number') return input;
 
     let numbersArray: number[] = [];
     if (Array.isArray(input)) {
-      numbersArray = input.sort((a, b) => b - a);
+      numbersArray = this.sortDescending(input);
     }
 
     if (input.includes('\n')) {
       numbersArray = input.split('\n')
       .join(',')
       .split(',').filter((num: string) => num.trim() !== '').map((el: string) => parseInt(el, 10));
-      numbersArray = numbersArray.sort((a, b) => b - a);
-      console.log('numsArr', numbersArray)
+      numbersArray = this.sortDescending(numbersArray);
     }
 
     return numbersArray.reduce((acc, sum) => acc - sum);
@@ -52,7 +55,7 @@ export class CalculatorComponent {
 
   calculateMultiplication(input: any): number {
     if (!input) return 0;
-    if (input === '') return 0
+    if (input === '') return 0;
 
     if (typeof input === 'number') return input;
 

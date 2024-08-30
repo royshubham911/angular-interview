@@ -6,7 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./calculator.component.scss'],
 })
 export class CalculatorComponent {
-
   sortDescending(arr: number[]): number[] {
     return arr.slice().sort((a, b) => b - a);
   }
@@ -24,9 +23,12 @@ export class CalculatorComponent {
     }
 
     if (input.includes('\n')) {
-      numbersArray = input.split('\n')
-      .join(',')
-      .split(',').filter((num: string) => num.trim() !== '').map((el: string) => parseInt(el, 10))
+      numbersArray = input
+        .split('\n')
+        .join(',')
+        .split(',')
+        .filter((num: string) => num.trim() !== '')
+        .map((el: string) => parseInt(el, 10));
     }
 
     return numbersArray.reduce((acc, sum) => acc + sum, 0);
@@ -44,9 +46,12 @@ export class CalculatorComponent {
     }
 
     if (input.includes('\n')) {
-      numbersArray = input.split('\n')
-      .join(',')
-      .split(',').filter((num: string) => num.trim() !== '').map((el: string) => parseInt(el, 10));
+      numbersArray = input
+        .split('\n')
+        .join(',')
+        .split(',')
+        .filter((num: string) => num.trim() !== '')
+        .map((el: string) => parseInt(el, 10));
       numbersArray = this.sortDescending(numbersArray);
     }
 
@@ -65,10 +70,33 @@ export class CalculatorComponent {
     }
 
     if (input.includes('\n')) {
-      numbersArray = input.split('\n')
-      .join(',')
-      .split(',').filter((num: string) => num.trim() !== '').map((el: string) => parseInt(el, 10));
+      numbersArray = input
+        .split('\n')
+        .join(',')
+        .split(',')
+        .filter((num: string) => num.trim() !== '')
+        .map((el: string) => parseInt(el, 10));
     }
     return numbersArray.reduce((acc, sum) => acc * sum, 1);
+  }
+
+  parseInt(input: any): number[] {
+    if (!input || input === '') return [];
+
+  if (typeof input === 'number') return [input];
+
+  let numbersArray: number[] = [];
+
+  if (Array.isArray(input)) {
+    numbersArray = input;
+  } else if (typeof input === 'string') {
+    numbersArray = input
+      .split('\n').join(',')
+      .split(',')
+      .filter(num => num.trim() !== '')
+      .map(el => parseInt(el, 10));
+  }
+
+    return numbersArray.filter(num => !isNaN(num));
   }
 }

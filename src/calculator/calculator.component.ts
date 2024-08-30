@@ -51,6 +51,10 @@ export class CalculatorComponent {
   }
 
   calculateMultiplication(input: any): number {
-    return 0;
+    if (!input) return 0;
+    if (input === '') return 0
+
+    if (typeof input === 'number') return input;
+    return input;
   }
 }
